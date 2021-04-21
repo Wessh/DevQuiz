@@ -11,18 +11,15 @@ class ChartWidget extends StatelessWidget {
       child: Stack(
         children: [
           Center(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 5),
-              child: Container(
-                height: 80,
-                width: 80,
-                child: CircularProgressIndicator(
-                  strokeWidth: 10,
-                  value: .75,
-                  backgroundColor: AppColors.chartSecondary,
-                  valueColor:
-                      AlwaysStoppedAnimation<Color>(AppColors.chartPrimary),
-                ),
+            child: Container(
+              height: 80,
+              width: 80,
+              child: CircularProgressIndicator(
+                strokeWidth: 10,
+                value: .75,
+                backgroundColor: AppColors.chartSecondary,
+                valueColor:
+                    AlwaysStoppedAnimation<Color>(AppColors.chartPrimary),
               ),
             ),
           ),
