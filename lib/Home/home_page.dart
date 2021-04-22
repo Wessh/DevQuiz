@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    if (controller.state == HomeState.success) {
+    if (controller.state.toString() == HomeState.success.toString()) {
       return Scaffold(
         appBar: AppBarWidget(
           user: controller.user!,
