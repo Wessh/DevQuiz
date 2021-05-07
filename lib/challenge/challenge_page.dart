@@ -37,6 +37,13 @@ class _ChallengePageState extends State<ChallengePage> {
           duration: Duration(milliseconds: 250), curve: Curves.linear);
   }
 
+  void onSelected(bool value) {
+    if (value) {
+      controller.qtdAnwserRight++;
+    }
+    nextPage();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,12 +74,7 @@ class _ChallengePageState extends State<ChallengePage> {
         physics: NeverScrollableScrollPhysics(),
         controller: pageController,
         children: widget.question
-            .map((e) => QuizWidget(
-                  question: e,
-                  onChange: () {
-                    nextPage();
-                  },
-                ))
+            .map((e) => QuizWidget(question: e, onSelected: onSelected))
             .toList(),
       ),
       bottomNavigationBar: SafeArea(
@@ -100,6 +102,8 @@ class _ChallengePageState extends State<ChallengePage> {
                           MaterialPageRoute(
                               builder: (context) => ResultPage(
                                     title: widget.title,
+                                    length: widget.question.length,
+                                    result: controller.qtdAnwserRight,
                                   )));
                     },
                   ))
