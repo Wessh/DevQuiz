@@ -1,13 +1,25 @@
 import 'package:devquiz/challenge/widgets/awnser/awnser_widget.dart';
+import 'package:devquiz/shared/models/awnser_model.dart';
 import 'package:devquiz/shared/models/question_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/app_text_styles.dart';
 
-class QuizWidget extends StatelessWidget {
+class QuizWidget extends StatefulWidget {
   final QuestionModel question;
+  final VoidCallback onChange;
 
-  const QuizWidget({Key? key, required this.question}) : super(key: key);
+  const QuizWidget({Key? key, required this.question, required this.onChange})
+      : super(key: key);
+
+  @override
+  _QuizWidgetState createState() => _QuizWidgetState();
+}
+
+class _QuizWidgetState extends State<QuizWidget> {
+  int indexSelected = -1;
+
+  AwnserModel awsers(int index) => widget.question.awnsers[index];
 
   @override
   Widget build(BuildContext context) {
@@ -18,20 +30,24 @@ class QuizWidget extends StatelessWidget {
             height: 64,
           ),
           Text(
-            question.title,
+            widget.question.title,
             style: AppTextStyles.heading,
           ),
           SizedBox(
             height: 24,
           ),
-          ...question.awnsers
-              .map(
-                (e) => AwnserWidget(
-                  title: e.title,
-                  isRight: e.isRight,
-                ),
-              )
-              .toList(),
+          for (var i = 0; i < widget.question.awnsers.length; i++)
+            AwnserWidget(
+              awnser: awsers(i),
+              disabled: indexSelected != -1,
+              isSelected: indexSelected == i,
+              onTap: () {
+                indexSelected = i;
+                setState(() {});
+                Future.delayed(Duration(seconds: 1))
+                    .then((value) => widget.onChange());
+              },
+            ),
         ],
       ),
     );
