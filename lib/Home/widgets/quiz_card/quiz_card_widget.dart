@@ -20,7 +20,6 @@ class QuizCardWidget extends StatelessWidget {
     required this.onTap,
     required this.image,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -37,7 +36,7 @@ class QuizCardWidget extends StatelessWidget {
             Container(
               width: 40,
               height: 40,
-              child: Image.asset(AppImages.blocks),
+              child: Image.asset("assets/images/$image.png"),
             ),
             SizedBox(
               height: 20,
