@@ -6,6 +6,7 @@ import '../../../core/app_images.dart';
 import '../../../core/app_text_styles.dart';
 
 class QuizCardWidget extends StatelessWidget {
+  final String image;
   final String title;
   final String completed;
   final double percent;
@@ -17,7 +18,9 @@ class QuizCardWidget extends StatelessWidget {
     required this.completed,
     required this.percent,
     required this.onTap,
+    required this.image,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -34,7 +37,7 @@ class QuizCardWidget extends StatelessWidget {
             Container(
               width: 40,
               height: 40,
-              child: Image.asset(AppImages.data),
+              child: Image.asset(AppImages.blocks),
             ),
             SizedBox(
               height: 20,
